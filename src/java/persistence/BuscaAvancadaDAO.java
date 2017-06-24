@@ -20,8 +20,16 @@ public class BuscaAvancadaDAO {
         ResultSet rs = null;
         ResultadoBusca rb = new ResultadoBusca();
         
-        String SQL = "SELECT * "
-                    + "FROM filmes LIMIT 50";
+        String SQL = "SELECT f.title, f.mvyear, d.dname, g.genre, l.language "
+                    + "FROM filmes AS f "
+                    + "INNER JOIN directors_movies AS dm ON f.movieid = dm.movieid "
+                    + "INNER JOIN directors AS d ON dm.directorid = d.directorid "
+                    + "INNER JOIN genre_movies AS gm ON f.movieid = gm.movieid "
+                    + "INNER JOIN genres AS g ON gm.genreid = g.genreid "
+                    + "INNER JOIN languages_movies AS lm ON f.movieid = lm.movieid "
+                    + "INNER JOIN languages AS l ON lm.languageid = l.languageid "
+                    + "WHERE f.title LIKE '%"+title+"%' "
+                    + "LIMIT 500";
                
         try{
             conn.stmt.execute(SQL);
@@ -33,16 +41,14 @@ public class BuscaAvancadaDAO {
                 
                 m.setTitle(rs.getString("title"));
                 m.setYear(rs.getString("mvyear"));
-                //m.setLanguages(rs.getString(3));
-                //m.setGenres(rs.getString(4));
-                
-                System.out.println("Titulo:"+m.getTitle());
-                
+                m.setLanguages(rs.getString("language"));
+                m.setGenres(rs.getString("genre"));
+                                
                 Director d = new Director();
                 
-                d.setName(rs.getString(3));
+                d.setName(rs.getString("dname"));
                 
-                rb.adiciona(m);
+                rb.adiciona(m, d);
             }  
         }
         catch (Exception e) {
