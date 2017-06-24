@@ -1,8 +1,6 @@
 package persistence;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import model.Director;
 import model.Movie;
 import model.ResultadoBusca;
@@ -12,43 +10,38 @@ import model.ResultadoBusca;
  * @author Grupo 05
  */
 public class BuscaAvancadaDAO {
-    private Connection connection; 
-    private Statement stmt;
+    protected ConnectionFactory conn; 
     
-    public BuscaAvancadaDAO() throws DAOException, SQLException{
-        //this.connection = ConnectionFactory.getConnection();
-        
-        //Conexao com o banco
-         try {
-            //Class.forName("org.postgresql.Driver").newInstance();
-            //String conn="jdbc:postgresql://localhost:5432/banco_projeto";
-           // String user="", password="";
-            this.connection = ConnectionFactory.getConnection();
-            stmt = connection.createStatement();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public BuscaAvancadaDAO() {        
+        this.conn = new ConnectionFactory();
     }
     
-    public ResultadoBusca buscar(String name, String diretor) /*throws SQLException*/{
+    public ResultadoBusca buscar(String name, String diretor){
         ResultSet rs = null;
         ResultadoBusca rb = new ResultadoBusca();
         
-        String SQL = "SELECT * FROM filmes AS a, directors AS d LIMIT 0,20";
-        
+        String SQL = "SELECT * "
+                    + "FROM filmes LIMIT 50";
+       
+        System.out.println("TITULO:" + SQL);
         
         try{
-            stmt.execute(SQL);
-            rs = stmt.getResultSet();  
+            conn.stmt.execute(SQL);
+            rs = conn.stmt.getResultSet();  
             
-            int i = 0;
             while (rs.next()){
+                
+                /*
+                1 - id
+                2 - Titulo
+                3 - Ano
+                */
             
                 Movie m = new Movie();
                 
-                m.setName(rs.getString(1));
-                m.setYear(rs.getString(2));
+                m.setTitle(rs.getString(2));
+                m.setYear(rs.getString(3));
+                
                 //m.setLanguages(rs.getString(3));
                 //m.setGenres(rs.getString(4));
                 
@@ -56,12 +49,10 @@ public class BuscaAvancadaDAO {
                 
                 d.setName(rs.getString(3));
                 
-                rb.adiciona(m, d);
-                
-                i++;   
+                rb.adiciona(m);
             }  
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
         }
           

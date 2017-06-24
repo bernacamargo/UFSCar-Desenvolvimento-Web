@@ -67,7 +67,7 @@
 				B&ensp;U&ensp;S&ensp;C&ensp;A 
 			</h1>
 		</div><br><br>
-		<form id="form-busca" action="" class="form-busca col-md-8 col-md-offset-2" style="padding: 20px 50px;">
+		<form id="form-busca" method="GET" action="BuscaAvancada" class="form-busca col-md-8 col-md-offset-2" style="padding: 20px 50px;">
 			
 			<div class="form-group">
 				<label for="titulo">Título</label>
@@ -85,20 +85,6 @@
 					<span class="glyphicon glyphicon-search"></span> Pesquisar
 				</button>
 			</div>
-			<div class="row" hidden>
-				<div class="col-md-3 form-group">
-					<label for="limite">Visualizar</label>
-					<select name="limite" id="limite" class="form-control">
-						<option value="50">50</option>
-						<option value="100">100</option>
-						<option value="200">200</option>
-						<option value="500">500</option>
-						<option value="1000">1000</option>
-						<option value="all">Todos</option>
-					</select>
-				</div>
-			</div>
-
 		</form>
 
 

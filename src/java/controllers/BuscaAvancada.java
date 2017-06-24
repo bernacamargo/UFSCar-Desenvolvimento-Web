@@ -65,13 +65,16 @@ public class BuscaAvancada extends HttpServlet {
         
         name = request.getParameter("titulo");
         diretor = request.getParameter("diretor");
+        if(diretor.length() == 0){
+            diretor = "todas";
+        }
         
-        BuscaAvancadaDAO buscaDAO = null;
+        BuscaAvancadaDAO buscaDAO = new BuscaAvancadaDAO();
         
         ResultadoBusca res = buscaDAO.buscar(name, diretor); 
         
         request.setAttribute("ResultadoBusca", res);
-        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/resultadoBusca.jsp");
         rd.forward(request, response);
         
     }

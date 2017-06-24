@@ -17,19 +17,11 @@ import model.ResultadoRanking;
  * @author lucas
  */
 public class BuscaRankingDAO {
-    private Connection connection; 
-    private Statement stmt;
+    private ConnectionFactory conn; 
     
-    public BuscaRankingDAO(){
-         try {
-            this.connection = ConnectionFactory.getConnection();
-            stmt = connection.createStatement();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } 
+    public BuscaRankingDAO() throws DAOException, SQLException{        
+        this.conn = new ConnectionFactory();
     }
-    
     
     public ResultadoRanking buscar(String genero, String data_inicio, String data_fim) /*throws SQLException*/{
         ResultSet rs = null;
@@ -39,8 +31,8 @@ public class BuscaRankingDAO {
         
         
         try{
-            stmt.execute(SQL);
-            rs = stmt.getResultSet();  
+            conn.stmt.execute(SQL);
+            rs = conn.stmt.getResultSet();  
             
             
             while (rs.next()){

@@ -1,3 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.*"%>
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -11,11 +14,11 @@
     <link rel="stylesheet" href="web/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="web/plugins/WOW-master/css/libs/animate.css">
     <link rel="stylesheet" href="web/estilo.css">
-    <!-- As 3 meta tags acima *devem* vir em primeiro lugar dentro do `head`; qualquer outro conteúdo deve vir *após* essas tags -->
+    <!-- As 3 meta tags acima *devem* vir em primeiro lugar dentro do `head`; qualquer outro conteÃºdo deve vir *apÃ³s* essas tags -->
     <title>M1ovieHunter</title>
 
     <!-- HTML5 shim e Respond.js para suporte no IE8 de elementos HTML5 e media queries -->
-    <!-- ALERTA: Respond.js não funciona se você visualizar uma página file:// -->
+    <!-- ALERTA: Respond.js nÃ£o funciona se vocÃª visualizar uma pÃ¡gina file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -78,6 +81,16 @@
 		    </li>
 		  </ul>
 		</nav>
+            
+    <%
+        ResultadoBusca res = (ResultadoBusca)request.getAttribute("ResultadoBusca");
+        if(res == null) {
+    %>
+    
+    
+    <%
+        } else {    
+    %>
 
 		<div id="result" class="col-md-12">
 			<h1>Resultados</h1>
@@ -91,87 +104,31 @@
 						<th>Ano</th>
 						<th>Diretor</th>
 						<th>Atores</th>
-						<th>Gênero</th>
+						<th>GÃªnero</th>
 						<th>Idioma</th>
 					</tr>
 
-					<tr>
-						<td>Capitão América II</td>
-						<td>2017</td>
-						<td>Bronha Planeta</td>
-						<td>Sujera Barril, Rodela Naripa, Vareta Espeto, Cutuca Casado</td>
-						<td>Ação</td>
-						<td>Russo</td>
-					</tr>
-					<tr>
-						<td>Capitão América II</td>
-						<td>2017</td>
-						<td>Bronha Planeta</td>
-						<td>Sujera Barril, Rodela Naripa, Vareta Espeto, Cutuca Casado</td>
-						<td>Ação</td>
-						<td>Russo</td>
-					</tr>
-					<tr>
-						<td>Capitão América II</td>
-						<td>2017</td>
-						<td>Bronha Planeta</td>
-						<td>Sujera Barril, Rodela Naripa, Vareta Espeto, Cutuca Casado</td>
-						<td>Ação</td>
-						<td>Russo</td>
-					</tr>
-					<tr>
-						<td>Capitão América II</td>
-						<td>2017</td>
-						<td>Bronha Planeta</td>
-						<td>Sujera Barril, Rodela Naripa, Vareta Espeto, Cutuca Casado</td>
-						<td>Ação</td>
-						<td>Russo</td>
-					</tr>
-					<tr>
-						<td>Capitão América II</td>
-						<td>2017</td>
-						<td>Bronha Planeta</td>
-						<td>Sujera Barril, Rodela Naripa, Vareta Espeto, Cutuca Casado</td>
-						<td>Ação</td>
-						<td>Russo</td>
-					</tr>
-					<tr>
-						<td>Capitão América II</td>
-						<td>2017</td>
-						<td>Bronha Planeta</td>
-						<td>Sujera Barril, Rodela Naripa, Vareta Espeto, Cutuca Casado</td>
-						<td>Ação</td>
-						<td>Russo</td>
-					</tr>
-					<tr>
-						<td>Capitão América II</td>
-						<td>2017</td>
-						<td>Bronha Planeta</td>
-						<td>Sujera Barril, Rodela Naripa, Vareta Espeto, Cutuca Casado</td>
-						<td>Ação</td>
-						<td>Russo</td>
-					</tr>
-				</table>
+                                        <% 
+                                            for (int i = 0 ; i < res.size() ; i++){
+                                                out.println("<tr>" + res.returnMovie(i) + "</tr>");
+                                            }
+                                        %>
+
+                                </table>
 			</div>
 		</div>
-		Titulo
-		Ano
-		Diretor
-		Atores
-		Genero
-		Idioma
-		
+        <% } %>
 	</div>
 
 	<footer>
 		<span class="" style="margin-right: 20px;"><b>MovieHunter</b> &copy; 2017 All rights reserved</span> <br>
 		<small style="margin-left: 20px;">Developers: Bernardo Camargo, Vitor Pratali, Lucas Occaso, Arthur Toledo</small>
 	</footer>
-    <!-- jQuery (obrigatório para plugins JavaScript do Bootstrap) -->
+    <!-- jQuery (obrigatÃ³rio para plugins JavaScript do Bootstrap) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="web/jquery/jquery-ui-1.12.1.ui-light/jquery-ui.min.js"></script>
 
-    <!-- Inclui todos os plugins compilados (abaixo), ou inclua arquivos separadados se necessário -->
+    <!-- Inclui todos os plugins compilados (abaixo), ou inclua arquivos separadados se necessÃ¡rio -->
     <script src="web/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="web/plugins/tag-it/js/tag-it.min.js"></script>
     <script src="web/plugins/WOW-master/dist/wow.min.js"></script>
