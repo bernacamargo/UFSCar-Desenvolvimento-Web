@@ -1,0 +1,49 @@
+footer {
+	position: relative;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 35px;
+	text-align: center;
+	background-color: #333;
+	color: #fff;
+	font-size: 1.2em;
+	padding-top: 7px;
+}
+
+#resultado {
+	padding-bottom: 50px;
+	background-color: #fff;
+	margin-top: 20px;
+	border-radius: 7px;
+}
+
+.filme-container {
+	border: 1px solid rgba(51,51,51,.3);
+	padding: 15px;
+	margin-top: 30px;	
+}
+
+.filme-container:first-child {
+}
+
+.wrapper {
+/* background-color: #421500;
+background-image: url("https://www.transparenttextures.com/patterns/clean-gray-paper.png");
+This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you!
+ */background-color: #421500;
+background-image: url("https://www.transparenttextures.com/patterns/rocky-wall.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
+#form-busca {
+	background-color: #fff;
+	padding: 15px;
+	border: 1px solid rgba(51,51,51, .3);
+	border-radius: 7px;
+}
+
+.navbar {
+	margin-bottom: 0!important;
+
+}
