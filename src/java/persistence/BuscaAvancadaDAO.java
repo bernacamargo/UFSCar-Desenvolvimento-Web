@@ -42,7 +42,6 @@ public class BuscaAvancadaDAO {
             stmt.execute(SQL);
             rs = stmt.getResultSet();  
             
-            
             int i = 0;
             while (rs.next()){
             

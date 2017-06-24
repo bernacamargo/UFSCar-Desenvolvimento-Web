@@ -1,6 +1,6 @@
-<!-- <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.*"%>
- -->
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">    
-    <link rel="stylesheet" href="web/jquery/jquery-ui-1.12.1.ui-light/jquery-ui.min.css">
+    <!--<link rel="stylesheet" href="build/web/jquery/jquery-ui-1.12.1.ui-lightness/jquery-ui.min.css">-->
     <link rel="stylesheet" href="web/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link href="web/plugins/tag-it/css/jquery.tagit.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="web/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -175,13 +175,10 @@
 		wow.init();
 
     	$(document).ready(function() {
-
       		$('#menu-ranking').click(function(event){
       			event.preventDefault();
       			$('#menu-busca').parent().removeClass('active');
       			$(this).parent().addClass('active');
-      			/*$("#ranking").show();
-      			$('#buscar').hide();*/
       			$('#buscar').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceOutRight animated').hide();    			
       			$('#ranking').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceInLeft animated').show();
       		});

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -13,7 +12,7 @@
     <link rel="stylesheet" href="web/plugins/WOW-master/css/libs/animate.css">
     <link rel="stylesheet" href="web/estilo.css">
     <!-- As 3 meta tags acima *devem* vir em primeiro lugar dentro do `head`; qualquer outro conteúdo deve vir *após* essas tags -->
-    <title>MovieHunter</title>
+    <title>M1ovieHunter</title>
 
     <!-- HTML5 shim e Respond.js para suporte no IE8 de elementos HTML5 e media queries -->
     <!-- ALERTA: Respond.js não funciona se você visualizar uma página file:// -->
