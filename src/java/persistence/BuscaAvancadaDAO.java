@@ -16,34 +16,27 @@ public class BuscaAvancadaDAO {
         this.conn = new ConnectionFactory();
     }
     
-    public ResultadoBusca buscar(String name, String diretor){
+    public ResultadoBusca buscar(String title, String diretor){
         ResultSet rs = null;
         ResultadoBusca rb = new ResultadoBusca();
         
         String SQL = "SELECT * "
                     + "FROM filmes LIMIT 50";
-       
-        System.out.println("TITULO:" + SQL);
-        
+               
         try{
             conn.stmt.execute(SQL);
             rs = conn.stmt.getResultSet();  
             
             while (rs.next()){
-                
-                /*
-                1 - id
-                2 - Titulo
-                3 - Ano
-                */
             
                 Movie m = new Movie();
                 
-                m.setTitle(rs.getString(2));
-                m.setYear(rs.getString(3));
-                
+                m.setTitle(rs.getString("title"));
+                m.setYear(rs.getString("mvyear"));
                 //m.setLanguages(rs.getString(3));
                 //m.setGenres(rs.getString(4));
+                
+                System.out.println("Titulo:"+m.getTitle());
                 
                 Director d = new Director();
                 
