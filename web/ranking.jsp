@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="web/plugins/WOW-master/css/libs/animate.css">
     <link rel="stylesheet" href="web/plugins/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="web/estilo.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+
     <!-- As 3 meta tags acima *devem* vir em primeiro lugar dentro do `head`; qualquer outro conteúdo deve vir *após* essas tags -->
     <title>MovieHunter</title>
 
@@ -27,10 +29,12 @@
   </head>
   <body>
 
-  	<div class="container-fluid" style="height: 300px; background-image: url('img/background6.jpg'); background-position: bottom; background-repeat: no-repeat; background-size: cover;">
+  	<div class="container-fluid" style="height: 300px; background-image: url('img/background4.jpg'); background-position: bottom; background-repeat: no-repeat; background-size: cover;">
   		<div class="row">
   			<div class="col-md-12" align="center">
+                           
   				<br><br><br>
+                                <h1 style="color: #fff; font-size: 65pt;">MOVIE HUNTER</h1>
   			</div>
   		</div>
   	</div>
@@ -45,14 +49,14 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#"><i class="fa fa-video-camera"></i> MovieHunter</a>
+	      <a class="navbar-brand" href="index.jsp"><i class="fa fa-video-camera"></i>&ensp;MH</a>
 	    </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav menu-principal">
-	        <li ><a id="menu-busca" href="/moviehunter"><span class="glyphicon glyphicon-search"></span> Buscar filme</a></li>
-                <li class="active"><a id="menu-ranking" href=""><span class="glyphicon glyphicon-signal"></span> Ranking</a></li>
+	        <li ><a id="menu-busca" href="index.jsp"><span class="glyphicon glyphicon-search"></span> Procurar</a></li>
+                <li class="active"><a id="menu-ranking" href="ranking.jsp"><i class="fa fa-star"></i> Ranking</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
 	      </ul>
@@ -62,19 +66,19 @@
 	</nav>
 
 
-	<div id="ranking" class="wrapper container">
+	<div id="ranking" class="wrapper container-fluid">
 		<br><br>
 		<div class="">
-			<h1 class="text-center"  style="color: #fff;">R&ensp;A&ensp;N&ensp;K&ensp;I&ensp;N&ensp;G</h1>
+                    <h1 class="text-center" >R&ensp;A&ensp;N&ensp;K&ensp;I&ensp;N&ensp;G</h1><hr>
+                                            <h4 style="text-align: center;">Classificação dos atores que possuem maior número de filmes por gênero</h4>
+
 		</div><br><br>
 
 		<form action="Ranking" method="GET" id="" class="form-busca col-md-8 col-md-offset-2">
-			
-                    <h4 style="text-align: center" >Filtre o ranking de filmes</h4>
-
-			<div class="col-md-6 form-group">
-				<label for="">Gênero</label>
-				<select name="genero" id="" class="form-control">
+                    <br>
+                    <div class="row">
+			<div class="col-md-4 form-group">
+				<select name="genero" id="" class="form-control input-lg" required>
                                     <option value="">Selecione um gênero</option>
                                     <option value="Action">Action</option>
                                     <option value="Adult">Adult</option>
@@ -108,29 +112,39 @@
 				</select>
 			</div>
                         
-                        <div class="col-md-3 form-group">
-                            <label for="">Ano inicial</label>
-                            <input type="text" name="data_inicio" id="" class="data form-control" placeholder="Exemplo: 1975">
+                        <div class="col-md-1 form-group">
+                            <input type="text" value="De" readonly class="form-control input-lg" style="padding-left: 4px; background: transparent; border: none; box-shadow: none;"/>
                         </div>
                         
                         <div class="col-md-3 form-group">
-                            <label for="">Ano final</label>
-                             <input type="text" name="data_fim" id="" class="data form-control" placeholder="Exemplo: 2008">
+                            <input type="text" name="data_inicio" id="" class="data form-control input-lg" placeholder="Exemplo: 1975">
                         </div>
-                    <br>
-                        <div class="text-center">
+                        
+                        <div class="col-md-1 form-group">
+                            <input type="text" value="Até" readonly class="form-control input-lg" style="padding-left: 0; background: transparent; border: none; box-shadow: none;"/>
+                        </div>
+                        
+                        <div class="col-md-3 form-group">
+                             <input type="text" name="data_fim" id="" class="data form-control input-lg" placeholder="Exemplo: 2008">
+                        </div>
+                    
+                        
+                        <br>
+                        <div class="text-center col-md-12">
+                            <br>
 				<button class="btn btn-lg btn-primary">
-					<span class="glyphicon glyphicon-search"></span> Pesquisar
+					<i class="fa fa-star"></i> Ver ranking <i class="fa fa-star"></i>
 				</button>
 			</div>
                         
 			
 		</form>
+            </div>                
 	</div>
 
 	<footer>
 		<span class="" style="margin-right: 20px;"><b>MovieHunter</b> &copy; 2017 All rights reserved</span> <br>
-		<small style="margin-left: 20px;">Developers: Bernardo Camargo, Vitor Pratali, Lucas Occaso, Arthur Toledo</small>
+                <small style="margin-left: 20px;">Developers:<br> Bernardo Camargo, Vitor Pratali, Lucas Occaso, Arthur Toledo</small>
 	</footer>
     <!-- jQuery (obrigatório para plugins JavaScript do Bootstrap) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

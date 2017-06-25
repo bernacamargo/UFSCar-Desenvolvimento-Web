@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="web/plugins/WOW-master/css/libs/animate.css">
     <link rel="stylesheet" href="web/estilo.css">
     <!-- As 3 meta tags acima *devem* vir em primeiro lugar dentro do `head`; qualquer outro conteúdo deve vir *após* essas tags -->
-    <title>M1ovieHunter</title>
+    <title>MovieHunter</title>
 
     <!-- HTML5 shim e Respond.js para suporte no IE8 de elementos HTML5 e media queries -->
     <!-- ALERTA: Respond.js não funciona se você visualizar uma página file:// -->
@@ -26,10 +26,12 @@
   </head>
   <body>
 
-  	<div class="container-fluid" style="height: 300px; background-image: url('img/background6.jpg'); background-position: bottom; background-repeat: no-repeat; background-size: cover;">
+  	<div class="container-fluid" style="height: 300px; background-image: url('img/background4.jpg'); background-position: bottom; background-repeat: no-repeat; background-size: cover;">
   		<div class="row">
   			<div class="col-md-12" align="center">
+                           
   				<br><br><br>
+                                <h1 style="color: #fff; font-size: 65pt;">MOVIE HUNTER</h1>
   			</div>
   		</div>
   	</div>
@@ -44,14 +46,14 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#"><i class="fa fa-video-camera"></i> MovieHunter</a>
+	      <a class="navbar-brand" href="index.jsp"><i class="fa fa-video-camera"></i>&ensp;MH</a>
 	    </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav menu-principal">
-	        <li class=""><a id="menu-busca" href="../"><span class="glyphicon glyphicon-search"></span> Buscar filme</a></li>
-			<li><a id="menu-ranking" href="index.jsp"><span class="glyphicon glyphicon-signal"></span> Ranking</a></li>
+	        <li ><a id="menu-busca" href="index.jsp"><span class="glyphicon glyphicon-search"></span> Procurar</a></li>
+                <li class="active"><a id="menu-ranking" href="ranking.jsp"><i class="fa fa-star"></i> Ranking</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
 	      </ul>
@@ -61,26 +63,14 @@
 	</nav>
 
 	<div class="wrapper container">
-
-		<nav aria-label="Page navigation">
-		  <ul class="pagination">
-		    <li>
-		      <a href="#" aria-label="Previous">
-		        <span aria-hidden="true">&laquo;</span>
-		      </a>
-		    </li>
-		    <li><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		    <li>
-		      <a href="#" aria-label="Next">
-		        <span aria-hidden="true">&raquo;</span>
-		      </a>
-		    </li>
-		  </ul>
-		</nav>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <br>
+                    <a class="btn btn-default" href="index.jsp"><i class="fa fa-arrow-circle-left"></i> Voltar</a>
+                    <br><br>
+                </div>
+            </div>		
             
     <%
         ResultadoBusca res = (ResultadoBusca)request.getAttribute("ResultadoBusca");
@@ -93,7 +83,7 @@
     %>
 
 		<div id="result" class="col-md-12">
-			<h1>Resultados</h1>
+			<h1>Filmes encontrados</h1>
 			<hr>
 
 			<div class="container-result">
@@ -115,6 +105,25 @@
                                         %>
 
                                 </table>
+                    <nav aria-label="Page navigation" align="center">
+                      <ul class="pagination">
+                        <li>
+                          <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                          </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                          <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>                                        
 			</div>
 		</div>
         <% } %>
@@ -122,7 +131,7 @@
 
 	<footer>
 		<span class="" style="margin-right: 20px;"><b>MovieHunter</b> &copy; 2017 All rights reserved</span> <br>
-		<small style="margin-left: 20px;">Developers: Bernardo Camargo, Vitor Pratali, Lucas Occaso, Arthur Toledo</small>
+                <small style="margin-left: 20px;">Developers:<br> Bernardo Camargo, Vitor Pratali, Lucas Occaso, Arthur Toledo</small>
 	</footer>
     <!-- jQuery (obrigatório para plugins JavaScript do Bootstrap) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

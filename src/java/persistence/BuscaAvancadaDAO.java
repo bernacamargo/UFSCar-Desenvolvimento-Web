@@ -41,7 +41,7 @@ public class BuscaAvancadaDAO {
                             }
                         }
                     }
-                    SQL = SQL + "LIMIT 500";
+                    SQL = SQL + "LIMIT 10";
         try{
             conn.stmt.execute(SQL);
             rs = conn.stmt.getResultSet();  

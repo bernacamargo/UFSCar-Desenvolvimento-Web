@@ -1,6 +1,31 @@
-body {
-	background-color: #421500;
-	background-image: url("https://www.transparenttextures.com/patterns/rocky-wall.png");	
+h1 {
+    /*font-family: 'Indie Flower', cursive;    */
+    /*  font-family: 'Bubbler One', sans-serif;*/
+    font-family: 'Slabo 27px', serif;
+
+}
+
+.btn-primary {
+    /*background-color: #337ab7;*/
+    background-color: #ff6600;
+    border: #d36c00;
+}
+
+.btn-primary:hover {
+    background-color: #d36c00;
+}
+
+b {
+    color: #ff6600;
+}
+
+.table,
+.table th {
+    text-align: center!important;
+}
+
+b.numero {
+    color: #000;
 }
 
 footer {
@@ -8,12 +33,12 @@ footer {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 70px;
+	height: 150px;
 	text-align: center;
-	background-color: #101010;
-	color: #fff;
+	background-color: #333;
+	color: #ccc;
 	font-size: 1.2em;
-	padding-top: 15px;
+	padding-top: 30px;
 }
 
 #resultado {
@@ -33,26 +58,23 @@ footer {
 }
 
 .wrapper {
-/* background-color: #421500;
-background-image: url("https://www.transparenttextures.com/patterns/clean-gray-paper.png");
-This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you!
- */background-color: transparent;
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-	padding-bottom: 50px;
+    background: f0f0f0;
+   /* background: linear-gradient(135deg, #708090 22px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px),
+    linear-gradient(225deg, #708090 22px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px)0 64px;
+    background-color:#708090;
+    background-size: 64px 128px*/
+    /* background-color: #421500;
+    background-image: url("https://www.transparenttextures.com/patterns/clean-gray-paper.png");
+    This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you!
+     *//*background-color: #421500;
+    background-image: url("https://www.transparenttextures.com/patterns/rocky-wall.png");*/
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 .form-busca {
 	background-color: #fff;
-	padding: 15px;
-	border: 1px solid rgba(51,51,51, .3);
-	border-radius: 7px;
-}
-
-.form-ranking {
-	background-color: #fff;
-	padding: 15px;
-	border: 1px solid rgba(51,51,51, .3);
-	border-radius: 7px;
+        color: #333;
+        padding-bottom: 150px;
 }
 
 .navbar {
@@ -60,13 +82,14 @@ This is mostly intended for prototyping; please download the pattern and re-host
 
 }
 
+.ouro {
+    color: #ffff00;
+}
 
-/* PÁGINA DE RESULTADO DA BUSCA */
+.prata {
+    color: #cccccc;
+}
 
-#result {
-	color: #333;
-	background-color: #f0f0f0;
-	border-radius: 7px;
-	border: 1px solid rgba(51,51,51,.3);
-	padding: 30px;
+.bronze {
+    color: #de9618;
 }

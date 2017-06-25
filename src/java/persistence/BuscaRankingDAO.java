@@ -38,7 +38,7 @@ public class BuscaRankingDAO {
                 if(data_fim.length() > 0){
                     SQL = SQL + "AND f.mvyear < '" + data_fim + "' ";
                 }
-                SQL = SQL + "GROUP BY a.actorname ORDER BY qtd DESC LIMIT 2";
+                SQL = SQL + "GROUP BY a.actorname ORDER BY qtd DESC LIMIT 10";
                 
         try{
             conn.stmt.execute(SQL);
