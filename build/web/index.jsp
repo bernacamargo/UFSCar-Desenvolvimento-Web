@@ -25,19 +25,27 @@
     <![endif]-->
   </head>
   <body>
+      
+      <div hidden id="preloader" class="container-fluid" style="padding-top: 300px; padding-left: 620px; overflow: hidden; width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 999; background: #fff;">
+            <h1 style="font-size: 50pt;"
+                <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+                <span class="sr-only">Loading...</span>
+            </h1>
 
-  	<div class="container-fluid" style="height: 300px; background-image: url('img/background4.jpg'); background-position: bottom; background-repeat: no-repeat; background-size: cover;">
-  		<div class="row">
+      </div>
+
+  	<div class="container-fluid" style="height: 300px; background-image: url('img/background4.jpg'); background-position: bottom; background-repeat: no-repeat; background-size: cover; background-attachment:  local">
+  		<div class="row" style="background: rgba(0,0,0,.5); height: 100%;">
   			<div class="col-md-12" align="center">
                            
-  				<br><br><br>
+                            <br><br><br><br><br>
                                 <h1 style="color: #fff; font-size: 65pt;">MOVIE HUNTER</h1>
   			</div>
   		</div>
   	</div>
 
-	<nav class="navbar navbar-inverse" style="border-radius: 0;">
-	  <div class="container">
+	<nav class="navbar navbar-inverse" style="background-color: #111; border-radius: 0;" align="center">
+	  <div class="container" align="center">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
 	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -50,7 +58,7 @@
 	    </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
 	      <ul class="nav navbar-nav menu-principal">
 	        <li class="active"><a id="menu-busca" href="index.jsp"><span class="glyphicon glyphicon-search"></span> Procurar</a></li>
                 <li ><a id="menu-ranking" href="ranking.jsp"><i class="fa fa-star"></i> Ranking</a></li>
@@ -94,6 +102,7 @@
 	<footer>
 		<span class="" style="margin-right: 20px;"><b>MovieHunter</b> &copy; 2017 All rights reserved</span> <br>
                 <small style="margin-left: 20px;">Developers:<br> Bernardo Camargo, Vitor Pratali, Lucas Occaso, Arthur Toledo</small>
+                <button class="btn btn-default pull-right" onclick="$(document).scrollTop(0)"><i class="fa fa-arrow-up"></i> Topo</button>
 	</footer>
     <!-- jQuery (obrigatório para plugins JavaScript do Bootstrap) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -121,8 +130,13 @@
 		  }
 		);
 		wow.init();
+                
 
     	$(document).ready(function() {
+                $(window).load(function(){
+                    $("#preloader").hide();
+                });
+            
       		$('#menu-ranking').click(function(event){
       			$('#menu-busca').parent().removeClass('active');
       			$(this).parent().addClass('active');
