@@ -59,18 +59,13 @@ public class BuscaAvancada extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
         
         String titulo = request.getParameter("titulo");
         String diretor = request.getParameter("diretor");
+                
+        BuscaAvancadaDAO buscaDAO = new BuscaAvancadaDAO();    
         
-        if(diretor.length() == 0){
-            diretor = "todas";
-        }
-        
-        BuscaAvancadaDAO buscaDAO = new BuscaAvancadaDAO();
-        
-        ResultadoBusca res = buscaDAO.buscar(titulo, diretor); 
+        ResultadoBusca res = buscaDAO.buscar(titulo, diretor);
         
         request.setAttribute("ResultadoBusca", res);
         RequestDispatcher rd = request.getRequestDispatcher("/resultadoBusca.jsp");

@@ -6,7 +6,7 @@
     </servlet>
     <servlet>
         <servlet-name>Ranking</servlet-name>
-        <servlet-class>controllers.Ranking</servlet-class>
+        <servlet-class>controllers.BuscaRanking</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BuscaAvancada</servlet-name>

@@ -12,17 +12,26 @@ package model;
 public class Actor {
     private String name;
     private String sex;
+    private int qtd;
 
-    public String getName() {
-        return name;
+    public int getQtd() {
+        return this.qtd;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getName() {
+        return this.name;
     }
 
     public String getSex() {
         return sex;
+    }
+
+    public void setQtd(int qtd) {
+        this.qtd = qtd;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setSex(String sex) {

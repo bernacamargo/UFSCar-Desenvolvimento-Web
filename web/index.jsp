@@ -50,8 +50,8 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav menu-principal">
-	        <li class="active"><a id="menu-busca" href="#"><span class="glyphicon glyphicon-search"></span> Buscar filme</a></li>
-			<li><a id="menu-ranking" href="#"><span class="glyphicon glyphicon-signal"></span> Ranking</a></li>
+	        <li class="active"><a id="menu-busca" href=""><span class="glyphicon glyphicon-search"></span> Buscar filme</a></li>
+			<li><a id="menu-ranking" href="ranking.jsp"><span class="glyphicon glyphicon-signal"></span> Ranking</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
 	      </ul>
@@ -87,46 +87,6 @@
 			</div>
 		</form>
 
-
-		<div id="resultado" class="col-md-6 col-md-offset-3" hidden>
-			
-			<div class="filme-container">
-				
-				<h4>Título do filme</h4>
-				<p>Diretor - Gênero - Ano</p>
-
-			</div>
-			<div class="filme-container">
-				
-				<h4>Título do filme</h4>
-				<p>Diretor - Gênero - Ano</p>
-
-			</div>
-
-		</div>
-
-	</div>
-
-	<div id="ranking" class="wrapper container" style="display: none;">
-		<br><br>
-		<div class="">
-			<h1 class="text-center"  style="color: #fff;">R&ensp;A&ensp;N&ensp;K&ensp;I&ensp;N&ensp;G</h1>
-		</div><br><br>
-
-		<form action="" id="" class="form-busca col-md-8 col-md-offset-2">
-			
-			<p>Filtre o ranking de filmes</p>
-
-			<div class="col-md-6 form-group">
-				<label for="">Gênero</label>
-				<select name="" id="" class="form-control">
-					<option value="">Selecione um gênero</option>
-					<option value="">Ação</option>
-					<option value="">Terror</option>
-				</select>
-			</div>
-			
-		</form>
 	</div>
 
 	<footer>
@@ -162,29 +122,65 @@
 
     	$(document).ready(function() {
       		$('#menu-ranking').click(function(event){
-      			event.preventDefault();
       			$('#menu-busca').parent().removeClass('active');
       			$(this).parent().addClass('active');
-      			$('#buscar').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceOutRight animated').hide();    			
-      			$('#ranking').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceInLeft animated').show();
+      			/*$('#buscar').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceOutRight animated').hide();    			
+      			$('#ranking').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceInLeft animated').show();*/
       		});
 
       		$('#menu-busca').click(function(event){
-      			event.preventDefault();
       			$('#menu-ranking').parent().removeClass('active');
       			$(this).parent().addClass('active');
-      			/*$("#buscar").show();
-      			$('#ranking').hide();*/
-      			$('#buscar').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceInLeft animated').show();
-      			$('#ranking').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceOutRight animated').hide();      			
+      			/*$('#buscar').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceInLeft animated').show();
+      			$('#ranking').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceOutRight animated').hide();*/
       		});
+
+
+                /*$.ajax({
+                    url: 'BuscaDiretores',
+                    type: 'POST',
+                    data: {'id': 2 },
+                    success: function () {
+                       alert("DEU BOM NO AJAX");
+                    },
+                    error: function (e) {
+                        alert("DEU RUIM NO AJAX");
+                    }
+                });*/
+                
+                /*$.post('BuscaDiretores', function(response){
+                   $("#diretor").html(response);
+                });*/
+
+                
+                <%  
+                /*
+                    ResultadoDiretores res = (ResultadoDiretores)request.getAttribute("ResultadoDiretores");
+                    */
+                %>
 
     		$('#diretor').tagit({
     			allowSpaces: true,
     			placeholderText: "Digite o nome do diretor",
-    			availableTags: ["c++", "java", "php", "javascript", "ruby", "python", "c"],
+    			availableTags: [<% /* 
+                                        if(res == null){
+                                            System.out.println("RESULTADO NULO");
+                                        }
+                                        else {
+
+                                            for (int i = 0 ; i < res.size() ; i++){
+                                                out.println('"');
+                                                out.println(res.returnDiretor(i));
+                                                out.println('"');
+                                                if(i != res.size())
+                                                    out.println(", ");
+                                            }
+                                        }
+                        */%>],
     			autocomplete: {delay: 0, minLength: 2}
     		});
+                
+                
     	});
     </script>
   </body>

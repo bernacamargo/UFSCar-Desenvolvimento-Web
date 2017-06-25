@@ -18,9 +18,9 @@ public class ResultadoRanking {
         this.actor = new ArrayList();
     }
     
-    public String returnMovie(int i){      
-        return  "<td>" + this.actor.get(i).getName() + "</td>" +
-                "<td>" + this.actor.get(i).getSex() + "</td>";
+    public String returnAtor(int i){      
+        return  "<td>" + this.actor.get(i).getQtd() + "</td>" +
+                "<td>" + this.actor.get(i).getName() + "</td>";
     }
     
     public void adiciona(Actor a){

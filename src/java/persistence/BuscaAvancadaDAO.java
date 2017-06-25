@@ -20,6 +20,8 @@ public class BuscaAvancadaDAO {
         ResultSet rs = null;
         ResultadoBusca rb = new ResultadoBusca();
         
+        String diretores[] = diretor.split(",");
+               
         String SQL = "SELECT f.title, f.mvyear, d.dname, g.genre, l.language "
                     + "FROM filmes AS f "
                     + "INNER JOIN directors_movies AS dm ON f.movieid = dm.movieid "
@@ -28,15 +30,23 @@ public class BuscaAvancadaDAO {
                     + "INNER JOIN genres AS g ON gm.genreid = g.genreid "
                     + "INNER JOIN languages_movies AS lm ON f.movieid = lm.movieid "
                     + "INNER JOIN languages AS l ON lm.languageid = l.languageid "
-                    + "WHERE f.title LIKE '%"+title+"%' "
-                    + "LIMIT 500";
-               
+                    + "WHERE f.title LIKE '%"+title+"%' ";
+                    if(diretor.length() > 0){
+                        for(int i=0; i < diretores.length; i++){
+                            if(i == 0){
+                                SQL = SQL + "AND d.dname LIKE '%"+diretores[i]+"%' ";
+                            }
+                            else if(i > 0){
+                                SQL = SQL + "OR d.dname LIKE '%"+diretores[i]+"%' ";
+                            }
+                        }
+                    }
+                    SQL = SQL + "LIMIT 500";
         try{
             conn.stmt.execute(SQL);
             rs = conn.stmt.getResultSet();  
             
             while (rs.next()){
-            
                 Movie m = new Movie();
                 
                 m.setTitle(rs.getString("title"));
@@ -47,6 +57,8 @@ public class BuscaAvancadaDAO {
                 Director d = new Director();
                 
                 d.setName(rs.getString("dname"));
+                
+                
                 
                 rb.adiciona(m, d);
             }  

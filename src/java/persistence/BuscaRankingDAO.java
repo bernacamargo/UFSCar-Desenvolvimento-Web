@@ -5,10 +5,8 @@
  */
 package persistence;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import model.Actor;
 import model.ResultadoRanking;
 
@@ -19,30 +17,41 @@ import model.ResultadoRanking;
 public class BuscaRankingDAO {
     private ConnectionFactory conn; 
     
-    public BuscaRankingDAO() throws DAOException, SQLException{        
+    public BuscaRankingDAO(){        
         this.conn = new ConnectionFactory();
     }
     
-    public ResultadoRanking buscar(String genero, String data_inicio, String data_fim) /*throws SQLException*/{
+    public ResultadoRanking buscar(String genero, String data_inicio, String data_fim){
         ResultSet rs = null;
-        ResultadoRanking rb = new ResultadoRanking();
+        ResultadoRanking rr = new ResultadoRanking();
         
-        String SQL = "SELECT * FROM filmes AS a, directors AS d LIMIT 0,20";
-        
-        
+        String SQL = "SELECT COUNT(a.actorid) AS qtd, a.actorname "
+                + "FROM actor AS a "
+                + "INNER JOIN filme_actor AS fa ON a.actorid = fa.actorid "
+                + "INNER JOIN filmes AS f ON f.movieid = fa.movieid "
+                + "INNER JOIN genre_movies AS gm ON gm.movieid = f.movieid "
+                + "INNER JOIN genres AS g ON g.genreid = gm.genreid ";
+                SQL = SQL + "WHERE g.genre = '" + genero + "' ";
+                if(data_inicio.length() > 0){
+                    SQL = SQL + "AND f.mvyear > '" + data_inicio + "' ";
+                }
+                if(data_fim.length() > 0){
+                    SQL = SQL + "AND f.mvyear < '" + data_fim + "' ";
+                }
+                SQL = SQL + "GROUP BY a.actorname ORDER BY qtd DESC LIMIT 2";
+                
         try{
             conn.stmt.execute(SQL);
             rs = conn.stmt.getResultSet();  
-            
             
             while (rs.next()){
             
                 Actor a = new Actor();
                 
-                a.setName(rs.getString(1));
-                a.setSex(rs.getString(2));
+                a.setQtd(rs.getInt(1));
+                a.setName(rs.getString(2));
                 
-                rb.adiciona(a);
+                rr.adiciona(a);
                    
             }  
         }
@@ -50,7 +59,7 @@ public class BuscaRankingDAO {
             e.printStackTrace();
         }
           
-        return rb;
+        return rr;
     }
     
 }
