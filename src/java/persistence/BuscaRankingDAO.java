@@ -25,6 +25,13 @@ public class BuscaRankingDAO {
         ResultSet rs = null;
         ResultadoRanking rr = new ResultadoRanking();
         
+        int ano_inicio = 0, ano_fim = 0;
+        
+        if(data_inicio != null)
+            ano_inicio = Integer.parseInt(data_inicio);
+        if(data_fim != null)
+            ano_fim = Integer.parseInt(data_fim);
+        
         int offset=0;
         
         if(pag != null){
@@ -60,10 +67,10 @@ public class BuscaRankingDAO {
                     + "AND g.genre LIKE '"+genero+"' "
                 + ") AS gm ON fa.movieid = gm.movieid ";
                 if(data_inicio.length() > 0){
-                    SQL = SQL + "AND f.mvyear > '" + data_inicio + "' ";
+                    SQL = SQL + "AND f.mvyear >= '" + data_inicio + "' ";
                 }
                 if(data_fim.length() > 0){
-                    SQL = SQL + "AND f.mvyear < '" + data_fim + "' ";
+                    SQL = SQL + "AND f.mvyear <= '" + data_fim + "' ";
                 }
                 SQL = SQL + "GROUP BY a.actorname ORDER BY qtd DESC, a.actorname "
                         + "LIMIT 10 OFFSET "+offset;

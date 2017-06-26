@@ -80,7 +80,7 @@
                     <div class="row">
 			<div class="col-md-4 form-group">
 				<select name="genero" id="" class="form-control input-lg" required>
-                                    <option value="">Selecione um gênero</option>
+                                    <option value="" hidden>Selecione um gênero</option>
                                     <option value="Action">Action</option>
                                     <option value="Adult">Adult</option>
                                     <option value="Adventure">Adventure</option>
@@ -114,7 +114,7 @@
 			</div>
                         
                         <div class="col-md-1 form-group">
-                            <input onfocus="$('#data_inicio').focus();" type="text" value="De" readonly class="form-control input-lg" style="padding-left: 4px; background: transparent; border: none; box-shadow: none;"/>
+                            <input onfocus="$('#data_inicio').focus();" type="number" value="De" readonly class="form-control input-lg" style="padding-left: 4px; background: transparent; border: none; box-shadow: none;"/>
                         </div>
                         
                         <div class="col-md-3 form-group">
@@ -122,7 +122,7 @@
                         </div>
                         
                         <div class="col-md-1 form-group">
-                            <input onfocus="$('#data_fim').focus();" type="text" value="Até" readonly class="form-control input-lg" style="padding-left: 0; background: transparent; border: none; box-shadow: none;"/>
+                            <input onfocus="$('#data_fim').focus();" type="number" value="Até" readonly class="form-control input-lg" style="padding-left: 0; background: transparent; border: none; box-shadow: none;"/>
                         </div>
                         
                         <div class="col-md-3 form-group">
@@ -170,22 +170,22 @@
       		});
                 
                 $('#form-ranking').submit(function(event){
-                    
-                    if($("#data_fim").val() < $("#data_inicio").val()){
+                                        
+                    if($("#data_fim").val() === "" || $("#data_inicio").val() === "" || $("#data_fim").val() >= $("#data_inicio").val()){
+                        event.submit();
+                    }                    
+                    else if($("#data_fim").val() < $("#data_inicio").val()){
                         event.preventDefault();                    
                         alert("O ano de inicio deve ser menor que o ano final");
                     }
-                    else if($("#data_fim").val() >= $("#data_inicio").val()){
-                        event.submit();
-                    }
-                    
+
                 });
                 
-                $('#data_inicio').outfocus(function(event){
+                $('#data_inicio').outfocus(function(){
                     $("#data_fim").attr("min", $(this).val());
                 });
                 
-                $('#data_fim').outfocus(function(event){
+                $('#data_fim').outfocus(function(){
                     $("#data_inicio").attr("max", $(this).val());
                 });
 
