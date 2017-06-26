@@ -63,10 +63,12 @@ public class BuscaRanking extends HttpServlet {
         String data_inicio = null;
         String data_fim = null;
         String pagina = null;
+        String n = null;
         
         genero = request.getParameter("genero");
         data_inicio = request.getParameter("data_inicio");
         data_fim = request.getParameter("data_fim");
+        n = request.getParameter("n");        
         pagina = request.getParameter("pag");
         
         BuscaRankingDAO rankingDAO = new BuscaRankingDAO();

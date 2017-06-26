@@ -120,59 +120,16 @@
     <script type="text/javascript">
 
     	$(document).ready(function() {
-            
-           /* $.ajax({
-                url: 'BuscaDiretores',
-                type: 'POST',
-                success: function () {
-                   alert("DEU BOM NO AJAX");
-                },
-                error: function (e) {
-                    alert("DEU RUIM NO AJAX");
-                }
-            });*/
-            
-            <%  
-/*
-    ResultadoDiretores res = (ResultadoDiretores)request.getAttribute("ResultadoDiretores");
-    String tags = null;                    
 
-    if(res == null){
-        System.out.println("Resultado NULL");
-    }
-    else {
-        System.out.println("NAO ENTROU");
-        for (int i = 0 ; i < res.size() ; i++){
-            tags = tags + "\"";
-            tags = tags + ""+res.returnDiretor(i)+"";
-            tags = tags + "\"";
-            if(i != res.size())
-                tags = tags + ", ";
-        }
-
-        System.out.println(tags);
-    }*/
-%>
-
-            
       		$('#menu-ranking').click(function(event){
       			$('#menu-busca').parent().removeClass('active');
       			$(this).parent().addClass('active');
-      			/*$('#buscar').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceOutRight animated').hide();    			
-      			$('#ranking').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceInLeft animated').show();*/
       		});
 
       		$('#menu-busca').click(function(event){
       			$('#menu-ranking').parent().removeClass('active');
       			$(this).parent().addClass('active');
-      			/*$('#buscar').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceInLeft animated').show();
-      			$('#ranking').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceOutRight animated').hide();*/
       		});
-
-
-                /*$.post('BuscaDiretores', function(response){
-                   $("#diretor").html(response);
-                });*/
 
     		$('#diretor').tagit({
     			allowSpaces: true,

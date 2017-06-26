@@ -75,7 +75,7 @@
 
 		</div><br><br>
 
-		<form action="Ranking" method="GET" id="" class="form-busca col-md-8 col-md-offset-2">
+		<form id="form-ranking" action="Ranking" method="GET" id="" class="form-busca col-md-8 col-md-offset-2">
                     <br>
                     <div class="row">
 			<div class="col-md-4 form-group">
@@ -157,39 +157,37 @@
     <script src="web/plugins/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.min.js"></script>
 
     <script type="text/javascript">
-		var wow = new WOW(
-		  {
-		    boxClass:     'wow',      // animated element css class (default is wow)
-		    animateClass: 'animated', // animation css class (default is animated)
-		    offset:       0,          // distance to the element when triggering the animation (default is 0)
-		    mobile:       true,       // trigger animations on mobile devices (default is true)
-		    live:         true,       // act on asynchronously loaded content (default is true)
-		    callback:     function(box) {
-		      // the callback is fired every time an animation is started
-		      // the argument that is passed in is the DOM node being animated
-		    },
-		    scrollContainer: null // optional scroll container selector, otherwise use window
-		  }
-		);
-		wow.init();
-
     	$(document).ready(function() {
                         
       		$('#menu-ranking').click(function(event){
       			$('#menu-busca').parent().removeClass('active');
       			$(this).parent().addClass('active');
-      			/*$('#buscar').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceOutRight animated').hide();    			
-      			$('#ranking').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceInLeft animated').show();*/
       		});
 
       		$('#menu-busca').click(function(event){
       			$('#menu-ranking').parent().removeClass('active');
       			$(this).parent().addClass('active');
-      			/*$('#buscar').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceInLeft animated').show();
-      			$('#ranking').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceOutRight animated').hide();*/
       		});
                 
-                $('')
+                $('#form-ranking').submit(function(event){
+                    
+                    if($("#data_fim").val() < $("#data_inicio").val()){
+                        event.preventDefault();                    
+                        alert("O ano de inicio deve ser menor que o ano final");
+                    }
+                    else if($("#data_fim").val() >= $("#data_inicio").val()){
+                        event.submit();
+                    }
+                    
+                });
+                
+                $('#data_inicio').outfocus(function(event){
+                    $("#data_fim").attr("min", $(this).val());
+                });
+                
+                $('#data_fim').outfocus(function(event){
+                    $("#data_inicio").attr("max", $(this).val());
+                });
 
     		$('#diretor').tagit({
     			allowSpaces: true,

@@ -76,8 +76,10 @@
         ResultadoBusca res = (ResultadoBusca)request.getAttribute("ResultadoBusca");
         if(res == null) {
     %>
-    
-    
+    <div class="alert alert-danger">
+        <h1><i class="fa fa-warning"></i> Ocorreu um erro ao realizar a busca. Contate o administrador da página.</h1>
+    </div>
+
     <%
         } else {    
     %>
@@ -197,29 +199,10 @@
 
 
     <script type="text/javascript">
-		var wow = new WOW(
-		  {
-		    boxClass:     'wow',      // animated element css class (default is wow)
-		    animateClass: 'animated', // animation css class (default is animated)
-		    offset:       0,          // distance to the element when triggering the animation (default is 0)
-		    mobile:       true,       // trigger animations on mobile devices (default is true)
-		    live:         true,       // act on asynchronously loaded content (default is true)
-		    callback:     function(box) {
-		      // the callback is fired every time an animation is started
-		      // the argument that is passed in is the DOM node being animated
-		    },
-		    scrollContainer: null // optional scroll container selector, otherwise use window
-		  }
-		);
-		wow.init();
-
     	$(document).ready(function() {
-
       		$('#menu-ranking').click(function(event){
       			$('#menu-busca').parent().removeClass('active');
       			$(this).parent().addClass('active');
-      			/*$("#ranking").show();
-      			$('#buscar').hide();*/
       			$('#buscar').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceOutRight animated').hide();    			
       			$('#ranking').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceInLeft animated').show();
       		});
@@ -227,8 +210,6 @@
       		$('#menu-busca').click(function(event){
       			$('#menu-ranking').parent().removeClass('active');
       			$(this).parent().addClass('active');
-      			/*$("#buscar").show();
-      			$('#ranking').hide();*/
       			$('#buscar').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceInLeft animated').show();
       			$('#ranking').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceOutRight animated').hide();      			
       		});

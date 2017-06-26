@@ -24,11 +24,12 @@ public class BuscaRankingDAO {
     public ResultadoRanking buscar(String genero, String data_inicio, String data_fim, String pag){
         ResultSet rs = null;
         ResultadoRanking rr = new ResultadoRanking();
-        int limit = 0;
+        
+        int offset=0;
         
         if(pag != null){
-            limit = Integer.parseInt(pag)-1;
-            limit = limit * 10;
+            offset = Integer.parseInt(pag)-1;
+            offset = offset * 10;
         }
 
         //Primeira query 7 segundos mais lenta
@@ -51,6 +52,7 @@ public class BuscaRankingDAO {
         String SQL = "SELECT COUNT(gm.movieid) AS qtd, a.actorname "
                 + "FROM actor AS a "
                 + "INNER JOIN filme_actor AS fa ON fa.actorid = a.actorid "
+                + "INNER JOIN filmes AS f ON f.movieid = fa.movieid "
                 + "INNER JOIN ( "
                     + "SELECT gm.movieid "
                     + "FROM genre_movies AS gm, genres AS g "
@@ -58,16 +60,13 @@ public class BuscaRankingDAO {
                     + "AND g.genre LIKE '"+genero+"' "
                 + ") AS gm ON fa.movieid = gm.movieid ";
                 if(data_inicio.length() > 0){
-                    SQL = SQL + "AND ff.mvyear > '" + data_inicio + "' ";
+                    SQL = SQL + "AND f.mvyear > '" + data_inicio + "' ";
                 }
                 if(data_fim.length() > 0){
-                    SQL = SQL + "AND ff.mvyear < '" + data_fim + "' ";
+                    SQL = SQL + "AND f.mvyear < '" + data_fim + "' ";
                 }
                 SQL = SQL + "GROUP BY a.actorname ORDER BY qtd DESC, a.actorname "
-                        + "LIMIT 10 OFFSET "+limit;
-
-                
-                System.out.println(SQL);
+                        + "LIMIT 10 OFFSET "+offset;
                 
         try{
             conn.stmt.execute(SQL);

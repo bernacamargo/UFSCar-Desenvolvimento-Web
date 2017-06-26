@@ -77,12 +77,17 @@
         if(res == null) {
     %>
     
-    
+    <div class="alert alert-danger">
+        <h1><i class="fa fa-warning"></i> Ocorreu um erro ao realizar a busca. Contate o administrador da página.</h1>
+    </div>
+        
     <%
         } else {   
+            // Recebe a string da query atual -- .../Ranking?QUERYSTRING
+            String url = request.getQueryString();
             String genero = request.getParameter("genero"); 
-            String ano_inicio = request.getParameter("ano_inicio");
-            String ano_fim = request.getParameter("ano_fim");
+            String ano_inicio = request.getParameter("data_inicio");
+            String ano_fim = request.getParameter("data_fim");
             String pag = request.getParameter("pag");
             int pagina = 1;
             int offset = 0;
@@ -96,14 +101,26 @@
 		<div id="result" class="col-md-12">
                     <div class="text-center">
                         <h1><small><i class="fa fa-star"></i></small>&ensp;R&ensp;A&ensp;N&ensp;K&ensp;I&ensp;N&ensp;G&ensp;<small><i class="fa fa-star"></i></small></h1>
-			<hr>
-                        <br>
-                        <h4 class="text-left">
-                            <b><% out.println(genero); %></b> 
-                            <br> 
-                            <% if(ano_inicio != null && ano_fim != null){ %>
-                            De:&ensp;<b><% out.println(ano_inicio); %></b> até&ensp;<b><% out.println(ano_fim); }%></b>
-                        </h4>
+                        <p class="text-muted" style="font-size: 15pt;">
+                            <% out.println(genero); %>
+                            <br>
+                            <% if(ano_inicio.length() > 0 && ano_fim.length() > 0){ 
+                                out.println(ano_inicio);
+                                out.println("- ");
+                                out.println(ano_fim);                                
+                            }
+                            else if(ano_inicio.length() > 0 && ano_fim.length() == 0){
+                                out.println(ano_inicio);
+                                out.println("- 9999");                                
+                             } 
+                            else if(ano_inicio.length() == 0 && ano_fim.length() > 0){ 
+                                out.println("0000 - ");
+                                out.println(ano_fim);
+                             } 
+                             %>
+                            
+                        </p>
+                        <hr>
                     </div>
                         
 
@@ -112,7 +129,7 @@
 				<table class="table table-striped table-hover">
 					<tr>
                                                 <th>#</th>
-						<th>Quantidade de filmes</th>
+						<th>Quantidade de filmes</th> 
 						<th>Nome</th>
 					</tr>
 
@@ -148,8 +165,6 @@
                     <nav aria-label="Page navigation" align="center">
                       <ul class="pagination">
                         <% 
-                        if(true){
-
                             int ant1, ant2, ant3, prox1, prox2, prox3;
                             
                                                         
@@ -159,7 +174,6 @@
                             prox1 = pagina+1;
                             
                             // Armaze a String da query (BuscaAvancada?titulo=...)
-                            String url = request.getQueryString();
                             if(pagina == 1){
                                 url = url.replace("&pag="+pagina, "");
                                 url = "/moviehunter/Ranking?" + url + "&pag=";
@@ -202,8 +216,7 @@
                             <span aria-hidden="true">&raquo;</span>
                           </a>
                         </li>
-                        <% }
-                    } %>
+                        <% } %>
                       </ul>
                     </nav>                                        
 
@@ -231,29 +244,11 @@
 
 
     <script type="text/javascript">
-		var wow = new WOW(
-		  {
-		    boxClass:     'wow',      // animated element css class (default is wow)
-		    animateClass: 'animated', // animation css class (default is animated)
-		    offset:       0,          // distance to the element when triggering the animation (default is 0)
-		    mobile:       true,       // trigger animations on mobile devices (default is true)
-		    live:         true,       // act on asynchronously loaded content (default is true)
-		    callback:     function(box) {
-		      // the callback is fired every time an animation is started
-		      // the argument that is passed in is the DOM node being animated
-		    },
-		    scrollContainer: null // optional scroll container selector, otherwise use window
-		  }
-		);
-		wow.init();
-
     	$(document).ready(function() {
 
       		$('#menu-ranking').click(function(event){
       			$('#menu-busca').parent().removeClass('active');
       			$(this).parent().addClass('active');
-      			/*$("#ranking").show();
-      			$('#buscar').hide();*/
       			$('#buscar').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceOutRight animated').hide();    			
       			$('#ranking').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceInLeft animated').show();
       		});
@@ -261,8 +256,6 @@
       		$('#menu-busca').click(function(event){
       			$('#menu-ranking').parent().removeClass('active');
       			$(this).parent().addClass('active');
-      			/*$("#buscar").show();
-      			$('#ranking').hide();*/
       			$('#buscar').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceInLeft animated').show();
       			$('#ranking').removeClass('wow bounceInLeft bounceOutRight animated').addClass('wow bounceOutRight animated').hide();      			
       		});

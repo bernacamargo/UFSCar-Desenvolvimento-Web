@@ -19,7 +19,6 @@ public class BuscaAvancadaDAO {
     public ResultadoBusca buscar(String title, String diretor, String pag){
         ResultSet rs = null;
         ResultadoBusca rb = new ResultadoBusca();
-        
         String diretores[] = diretor.split(",");
         int limit = 0;
         
@@ -48,7 +47,6 @@ public class BuscaAvancadaDAO {
                         }
                     }
                     SQL = SQL + "LIMIT 10 OFFSET "+limit;
-                    System.out.println(SQL); 
         try{
             conn.stmt.execute(SQL);
             rs = conn.stmt.getResultSet();  
@@ -64,11 +62,9 @@ public class BuscaAvancadaDAO {
                 Director d = new Director();
                 
                 d.setName(rs.getString("dname"));
-                
-                
-                
+
                 rb.adiciona(m, d);
-            }  
+            } 
         }
         catch (Exception e) {
             e.printStackTrace();
