@@ -27,7 +27,7 @@ public class BuscaAvancadaDAO {
             limit = Integer.parseInt(pag)-1;
             limit = limit * 10;
         }
-               
+        
         String SQL = "SELECT f.title, f.mvyear, d.dname, g.genre, l.language "
                     + "FROM filmes AS f "
                     + "INNER JOIN directors_movies AS dm ON f.movieid = dm.movieid "

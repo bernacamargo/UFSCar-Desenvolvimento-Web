@@ -24,7 +24,6 @@ public class ResultadoBusca {
         return  "<td>" + this.movie.get(i).getTitle() + "</td>" +
                 "<td>" + this.movie.get(i).getYear() + "</td>" +
                 "<td>" + this.director.get(i).getName() +"</td>" +
-                "<td></td>" +
                 "<td>" + this.movie.get(i).getGenres() + "</td>" +
                 "<td>" + this.movie.get(i).getLanguages() + "</td>";
     }

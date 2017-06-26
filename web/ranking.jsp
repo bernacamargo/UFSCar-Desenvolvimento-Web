@@ -29,17 +29,17 @@
   </head>
   <body>
 
-  	<div class="container-fluid" style="height: 300px; background-image: url('img/background4.jpg'); background-position: bottom; background-repeat: no-repeat; background-size: cover;">
-  		<div class="row">
+  	<div class="container-fluid" style="height: 300px; background-image: url('img/background4.jpg'); background-position: bottom; background-repeat: no-repeat; background-size: cover; background-attachment:  local">
+  		<div class="row" style="background: rgba(0,0,0,.3); height: 100%;">
   			<div class="col-md-12" align="center">
                            
-  				<br><br><br>
+                            <br><br><br><br>
                                 <h1 style="color: #fff; font-size: 65pt;">MOVIE HUNTER</h1>
   			</div>
   		</div>
   	</div>
 
-	<nav class="navbar navbar-inverse" style="border-radius: 0;">
+	<nav class="navbar navbar-inverse" style="background-color: #111; border-radius: 0;" align="center">
 	  <div class="container">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
@@ -69,8 +69,9 @@
 	<div id="ranking" class="wrapper container-fluid">
 		<br><br>
 		<div class="">
-                    <h1 class="text-center" >R&ensp;A&ensp;N&ensp;K&ensp;I&ensp;N&ensp;G</h1><hr>
-                                            <h4 style="text-align: center;">Classificação dos atores que possuem maior número de filmes por gênero</h4>
+                    <h1 class="text-center" >R&ensp;A&ensp;N&ensp;K&ensp;I&ensp;N&ensp;G</h1>
+                    <hr>
+                    <h4 class='text-muted' style="text-align: center;">Classificação dos atores que possuem maior número de filmes por gênero</h4>
 
 		</div><br><br>
 
@@ -113,25 +114,23 @@
 			</div>
                         
                         <div class="col-md-1 form-group">
-                            <input type="text" value="De" readonly class="form-control input-lg" style="padding-left: 4px; background: transparent; border: none; box-shadow: none;"/>
+                            <input onfocus="$('#data_inicio').focus();" type="text" value="De" readonly class="form-control input-lg" style="padding-left: 4px; background: transparent; border: none; box-shadow: none;"/>
                         </div>
                         
                         <div class="col-md-3 form-group">
-                            <input type="text" name="data_inicio" id="" class="data form-control input-lg" placeholder="Exemplo: 1975">
+                            <input type="text" name="data_inicio" id="data_inicio" class="data form-control input-lg" placeholder="Exemplo: 1975">
                         </div>
                         
                         <div class="col-md-1 form-group">
-                            <input type="text" value="Até" readonly class="form-control input-lg" style="padding-left: 0; background: transparent; border: none; box-shadow: none;"/>
+                            <input onfocus="$('#data_fim').focus();" type="text" value="Até" readonly class="form-control input-lg" style="padding-left: 0; background: transparent; border: none; box-shadow: none;"/>
                         </div>
                         
                         <div class="col-md-3 form-group">
-                             <input type="text" name="data_fim" id="" class="data form-control input-lg" placeholder="Exemplo: 2008">
+                             <input type="text" name="data_fim" id="data_fim" class="data form-control input-lg" placeholder="Exemplo: 2008">
                         </div>
                     
-                        
-                        <br>
                         <div class="text-center col-md-12">
-                            <br>
+                            <br><br><br>
 				<button class="btn btn-lg btn-primary">
 					<i class="fa fa-star"></i> Ver ranking <i class="fa fa-star"></i>
 				</button>

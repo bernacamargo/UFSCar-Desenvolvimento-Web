@@ -107,3 +107,20 @@ footer button {
 .bronze {
     color: #de9618;
 }
+
+/* PAGINAÇAO */
+.pagination li a {
+    color: #222;
+}
+
+.pagination li.active a {
+    background-color: #ff6600;
+    border-color: #ff6000;
+}
+
+.pagination li.active a:hover,
+.pagination li.active a:active,
+.pagination li.active a:focus {
+    background-color: #ff6000;
+    border-color: #ff6000;
+}

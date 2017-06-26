@@ -26,17 +26,17 @@
   </head>
   <body>
 
-  	<div class="container-fluid" style="height: 300px; background-image: url('img/background4.jpg'); background-position: bottom; background-repeat: no-repeat; background-size: cover;">
-  		<div class="row">
+  	<div class="container-fluid" style="height: 300px; background-image: url('img/background4.jpg'); background-position: bottom; background-repeat: no-repeat; background-size: cover; background-attachment:  local">
+  		<div class="row" style="background: rgba(0,0,0,.3); height: 100%;">
   			<div class="col-md-12" align="center">
                            
-  				<br><br><br>
+                            <br><br><br><br>
                                 <h1 style="color: #fff; font-size: 65pt;">MOVIE HUNTER</h1>
   			</div>
   		</div>
   	</div>
 
-	<nav class="navbar navbar-inverse" style="border-radius: 0;">
+	<nav class="navbar navbar-inverse" style="background-color: #111; border-radius: 0;" align="center">
 	  <div class="container">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
@@ -83,6 +83,14 @@
             String genero = request.getParameter("genero"); 
             String ano_inicio = request.getParameter("ano_inicio");
             String ano_fim = request.getParameter("ano_fim");
+            String pag = request.getParameter("pag");
+            int pagina = 1;
+            int offset = 0;
+
+            if(pag != null){
+                pagina = Integer.parseInt(pag);
+                offset = 10*(pagina-1);
+            }
     %>
             <div class="row">
 		<div id="result" class="col-md-12">
@@ -108,42 +116,98 @@
 						<th>Nome</th>
 					</tr>
 
-                                        <% 
-                                            for (int i = 0 ; i < res.size() ; i++){
-                                                if(i == 0){
-                                                    out.println("<tr><td><b class='numero'>"+ (i+1) +"&ensp;<span class='pull-left'><i class='fa fa-star ouro'></i></span></b></td>" + res.returnAtor(i) + "</tr>");
+                                        <%    
+                                            int i, j=0;
+                                            try {
+                                                for(i = offset, j = 0; i < (pagina*10); i++, j++){
+                                                    if(i == 0){
+                                                        out.println("<tr><td><b class='numero'>"+ (i+1) +"&ensp;<span class='pull-left'><i class='fa fa-star ouro'></i></span></b></td>" + res.returnAtor(j) + "</tr>");
+                                                    }
+                                                    else if(i == 1){
+                                                        out.println("<tr><td><b class='numero' >"+ (i+1) +"&ensp;<span class='pull-left'><i class='fa fa-star prata'></i></span></b></td>" + res.returnAtor(j) + "</tr>");
+                                                    }
+                                                    else if(i == 2){
+                                                        out.println("<tr><td><b class='numero'>"+ (i+1) +"&ensp;<span class='pull-left'><i class='fa fa-star bronze'></i></span></b></td>" + res.returnAtor(j) + "</tr>");
+                                                    }                                                
+                                                    else 
+                                                        out.println("<tr><td><b class='numero'>"+ (i+1) +"</b></td>" + res.returnAtor(j) + "</tr>");
                                                 }
-                                                else if(i == 1){
-                                                    out.println("<tr><td><b class='numero' >"+ (i+1) +"&ensp;<span class='pull-left'><i class='fa fa-star prata'></i></span></b></td>" + res.returnAtor(i) + "</tr>");
-                                                }
-                                                else if(i == 2){
-                                                    out.println("<tr><td><b class='numero'>"+ (i+1) +"&ensp;<span class='pull-left'><i class='fa fa-star bronze'></i></span></b></td>" + res.returnAtor(i) + "</tr>");
-                                                }                                                
-                                                else 
-                                                    out.println("<tr><td><b class='numero'>"+ (i+1) +"</b></td>" + res.returnAtor(i) + "</tr>");
                                             }
+                                            catch (Exception e) {
+                                            }
+                                            if(j == 0){
                                         %>
+                                        <div class="alert alert-danger">
+                                            <h2 class="text-center">
+                                                <span class="fa fa-warning"></span> Nenhum resultado encontrado
+                                            </h2>
+                                        </div>
+                                        
+                                        <% } %>
+                                </table>
+                    <nav aria-label="Page navigation" align="center">
+                      <ul class="pagination">
+                        <% 
+                        if(true){
+
+                            int ant1, ant2, ant3, prox1, prox2, prox3;
+                            
+                                                        
+                            ant1 = pagina-1;
+                            ant2 = pagina-2;
+                            ant3 = pagina-3;
+                            prox1 = pagina+1;
+                            
+                            // Armaze a String da query (BuscaAvancada?titulo=...)
+                            String url = request.getQueryString();
+                            if(pagina == 1){
+                                url = url.replace("&pag="+pagina, "");
+                                url = "/moviehunter/Ranking?" + url + "&pag=";
+                            }
+                            else{
+                                url = url.replace("pag="+pagina, "");                                
+                                url = "/moviehunter/Ranking?" + url + "pag=";
+                            }
+                            if(pagina != 1){
+                            %>
+                            <li>
+                                <a href="<%=url+"1"%>" aria-label="First">
+                                  <span aria-hidden="true">Primeira</span>
+                                </a>
+                             </li>
+
+                            <li>
+                                <a href="<%=url+ant1%>" aria-label="Previous">
+                                  <span aria-hidden="true">&laquo;</span>
+                                </a>
+                             </li>
+
+                            <%
+                            }
+                            // Páginas anteriores
+                            if(ant2 > 0)
+                                out.println("<li><a href='"+url+ant2+"'>"+ant2+"</a></li>");
+                            if(ant1 > 0)
+                                out.println("<li><a href='"+url+ant1+"'>"+ant1+"</a></li>");
+                            //Pagina atual
+                            out.println("<li class='active'><a href='"+url+pagina+"'>"+pagina+"</a></li>");
+                            // Próxima página
+                            if(j > 9){
+                                out.println("<li><a href='"+url+prox1+"'>"+prox1+"</a></li>");
+                            
+    
+                        %>
+                        <li>
+                          <a href="<%=url+prox1%>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                        <% }
+                    } %>
+                      </ul>
+                    </nav>                                        
 
                                 </table>
-		<nav aria-label="Page navigation" align="center">
-		  <ul class="pagination">
-		    <li>
-		      <a href="#" aria-label="Previous">
-		        <span aria-hidden="true">&laquo;</span>
-		      </a>
-		    </li>
-		    <li><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		    <li>
-		      <a href="#" aria-label="Next">
-		        <span aria-hidden="true">&raquo;</span>
-		      </a>
-		    </li>
-		  </ul>
-		</nav>
                                         
 			</div>
 		</div>

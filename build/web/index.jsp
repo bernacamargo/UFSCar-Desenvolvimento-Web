@@ -35,10 +35,10 @@
       </div>
 
   	<div class="container-fluid" style="height: 300px; background-image: url('img/background4.jpg'); background-position: bottom; background-repeat: no-repeat; background-size: cover; background-attachment:  local">
-  		<div class="row" style="background: rgba(0,0,0,.5); height: 100%;">
+  		<div class="row" style="background: rgba(0,0,0,.3); height: 100%;">
   			<div class="col-md-12" align="center">
                            
-                            <br><br><br><br><br>
+                            <br><br><br><br>
                                 <h1 style="color: #fff; font-size: 65pt;">MOVIE HUNTER</h1>
   			</div>
   		</div>
@@ -77,6 +77,7 @@
 				B&ensp;U&ensp;S&ensp;C&ensp;A 
 			</h1>
                     <hr>
+                        <h4 class='text-muted' style="text-align: center;">Pesquise filmes através do título e também filtre pelo nome do diretor.</h4>
                 </div><br>
 		<form id="form-busca" method="GET" action="BuscaAvancada" class="form-busca col-md-8 col-md-offset-2">
 			

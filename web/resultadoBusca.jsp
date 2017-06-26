@@ -26,17 +26,17 @@
   </head>
   <body>
 
-  	<div class="container-fluid" style="height: 300px; background-image: url('img/background4.jpg'); background-position: bottom; background-repeat: no-repeat; background-size: cover;">
-  		<div class="row">
+  	<div class="container-fluid" style="height: 300px; background-image: url('img/background4.jpg'); background-position: bottom; background-repeat: no-repeat; background-size: cover; background-attachment:  local">
+  		<div class="row" style="background: rgba(0,0,0,.3); height: 100%;">
   			<div class="col-md-12" align="center">
                            
-  				<br><br><br>
+                            <br><br><br><br>
                                 <h1 style="color: #fff; font-size: 65pt;">MOVIE HUNTER</h1>
   			</div>
   		</div>
   	</div>
 
-	<nav class="navbar navbar-inverse" style="border-radius: 0;">
+	<nav class="navbar navbar-inverse" style="background-color: #111; border-radius: 0;" align="center">
 	  <div class="container">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
@@ -93,21 +93,31 @@
 						<th>Titulo</th>
 						<th>Ano</th>
 						<th>Diretor</th>
-						<th>Atores</th>
 						<th>Gênero</th>
 						<th>Idioma</th>
 					</tr>
 
                                         <% 
-                                            for (int i = 0 ; i < res.size() ; i++){
+                                            int i;
+                                            for (i = 0 ; i < res.size() ; i++){
                                                 out.println("<tr>" + res.returnMovie(i) + "</tr>");
                                             }
+                                            
+                                            if(i == 0){
                                         %>
-
+                                        
+                                        <div class="alert alert-danger">
+                                            <h2 class="text-center">
+                                                <span class="fa fa-warning"></span> Nenhum resultado encontrado
+                                            </h2>
+                                        </div>
+                                        
+                                        <% } %>
                                 </table>
                     <nav aria-label="Page navigation" align="center">
                       <ul class="pagination">
                         <% 
+                        if(true){
                             String pag = request.getParameter("pag");
                             int pagina = 1, ant1, ant2, ant3, prox1, prox2, prox3;
                             
@@ -119,8 +129,6 @@
                             ant2 = pagina-2;
                             ant3 = pagina-3;
                             prox1 = pagina+1;
-                            prox2 = pagina+2;
-                            prox3 = pagina+3;
                             
                             // Armaze a String da query (BuscaAvancada?titulo=...)
                             String url = request.getQueryString();
@@ -132,7 +140,6 @@
                                 url = url.replace("pag="+pagina, "");                                
                                 url = "/moviehunter/BuscaAvancada?" + url + "pag=";
                             }
-
                             if(pagina != 1){
                             %>
                             <li>
@@ -153,16 +160,20 @@
                                 out.println("<li><a href='"+url+ant2+"'>"+ant2+"</a></li>");
                             if(ant1 > 0)
                                 out.println("<li><a href='"+url+ant1+"'>"+ant1+"</a></li>");
-                            out.println("<li class='active'><a href='"+url+pagina+"'>"+pagina+"</a></li>");
                             
-                            out.println("<li><a href='"+url+prox1+"'>"+prox1+"</a></li>");
-                            out.println("<li><a href='"+url+prox2+"'>"+prox2+"</a></li>");
+                            
+                                out.println("<li class='active'><a href='"+url+pagina+"'>"+pagina+"</a></li>");
+                            if(i > 9){
+                                out.println("<li><a href='"+url+prox1+"'>"+prox1+"</a></li>");
+                            
+    
                         %>
                         <li>
                           <a href="<%=url+prox1%>" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                           </a>
                         </li>
+                        <% }} %>
                       </ul>
                     </nav>                                        
 			</div>
