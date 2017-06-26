@@ -107,18 +107,59 @@
                                 </table>
                     <nav aria-label="Page navigation" align="center">
                       <ul class="pagination">
+                        <% 
+                            String pag = request.getParameter("pag");
+                            int pagina = 1, ant1, ant2, ant3, prox1, prox2, prox3;
+                            
+                            if(pag != null){
+                                pagina = Integer.parseInt(pag);
+                            }
+                                                        
+                            ant1 = pagina-1;
+                            ant2 = pagina-2;
+                            ant3 = pagina-3;
+                            prox1 = pagina+1;
+                            prox2 = pagina+2;
+                            prox3 = pagina+3;
+                            
+                            // Armaze a String da query (BuscaAvancada?titulo=...)
+                            String url = request.getQueryString();
+                            if(pagina == 1){
+                                url = url.replace("&pag="+pagina, "");
+                                url = "/moviehunter/BuscaAvancada?" + url + "&pag=";
+                            }
+                            else{
+                                url = url.replace("pag="+pagina, "");                                
+                                url = "/moviehunter/BuscaAvancada?" + url + "pag=";
+                            }
+
+                            if(pagina != 1){
+                            %>
+                            <li>
+                                <a href="<%=url+"1"%>" aria-label="First">
+                                  <span aria-hidden="true">Primeira</span>
+                                </a>
+                             </li>
+
+                            <li>
+                                <a href="<%=url+ant1%>" aria-label="Previous">
+                                  <span aria-hidden="true">&laquo;</span>
+                                </a>
+                             </li>
+
+                            <%
+                            }
+                            if(ant2 > 0)
+                                out.println("<li><a href='"+url+ant2+"'>"+ant2+"</a></li>");
+                            if(ant1 > 0)
+                                out.println("<li><a href='"+url+ant1+"'>"+ant1+"</a></li>");
+                            out.println("<li class='active'><a href='"+url+pagina+"'>"+pagina+"</a></li>");
+                            
+                            out.println("<li><a href='"+url+prox1+"'>"+prox1+"</a></li>");
+                            out.println("<li><a href='"+url+prox2+"'>"+prox2+"</a></li>");
+                        %>
                         <li>
-                          <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                          </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                          <a href="#" aria-label="Next">
+                          <a href="<%=url+prox1%>" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                           </a>
                         </li>

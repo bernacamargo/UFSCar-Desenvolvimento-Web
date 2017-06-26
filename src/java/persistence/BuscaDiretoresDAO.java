@@ -20,7 +20,7 @@ public class BuscaDiretoresDAO {
     
     public ResultadoDiretores buscar(){
         ResultSet rs = null;
-        ResultadoDiretores rb = new ResultadoDiretores();
+        ResultadoDiretores rd = new ResultadoDiretores();
         
         String SQL = "SELECT * FROM directors";
                
@@ -34,15 +34,15 @@ public class BuscaDiretoresDAO {
                 
                 d.setName(rs.getString("dname"));
                 
-                System.out.println(d.getName());
+                //System.out.println(d.getName());
                 
-                rb.adiciona(d);
+                rd.adiciona(d);
             }  
         }
         catch (Exception e) {
             e.printStackTrace();
         }
           
-        return rb;
+        return rd;
     }
 }

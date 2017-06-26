@@ -95,6 +95,8 @@
 					<span class="glyphicon glyphicon-search"></span> Pesquisar
 				</button>
 			</div>
+                    
+                    
 		</form>
 
 	</div>
@@ -115,27 +117,42 @@
 
 
     <script type="text/javascript">
-		var wow = new WOW(
-		  {
-		    boxClass:     'wow',      // animated element css class (default is wow)
-		    animateClass: 'animated', // animation css class (default is animated)
-		    offset:       0,          // distance to the element when triggering the animation (default is 0)
-		    mobile:       true,       // trigger animations on mobile devices (default is true)
-		    live:         true,       // act on asynchronously loaded content (default is true)
-		    callback:     function(box) {
-		      // the callback is fired every time an animation is started
-		      // the argument that is passed in is the DOM node being animated
-		    },
-		    scrollContainer: null // optional scroll container selector, otherwise use window
-		  }
-		);
-		wow.init();
-                
 
     	$(document).ready(function() {
-                $(window).load(function(){
-                    $("#preloader").hide();
-                });
+            
+           /* $.ajax({
+                url: 'BuscaDiretores',
+                type: 'POST',
+                success: function () {
+                   alert("DEU BOM NO AJAX");
+                },
+                error: function (e) {
+                    alert("DEU RUIM NO AJAX");
+                }
+            });*/
+            
+            <%  
+/*
+    ResultadoDiretores res = (ResultadoDiretores)request.getAttribute("ResultadoDiretores");
+    String tags = null;                    
+
+    if(res == null){
+        System.out.println("Resultado NULL");
+    }
+    else {
+        System.out.println("NAO ENTROU");
+        for (int i = 0 ; i < res.size() ; i++){
+            tags = tags + "\"";
+            tags = tags + ""+res.returnDiretor(i)+"";
+            tags = tags + "\"";
+            if(i != res.size())
+                tags = tags + ", ";
+        }
+
+        System.out.println(tags);
+    }*/
+%>
+
             
       		$('#menu-ranking').click(function(event){
       			$('#menu-busca').parent().removeClass('active');
@@ -152,47 +169,14 @@
       		});
 
 
-                /*$.ajax({
-                    url: 'BuscaDiretores',
-                    type: 'POST',
-                    data: {'id': 2 },
-                    success: function () {
-                       alert("DEU BOM NO AJAX");
-                    },
-                    error: function (e) {
-                        alert("DEU RUIM NO AJAX");
-                    }
-                });*/
-                
                 /*$.post('BuscaDiretores', function(response){
                    $("#diretor").html(response);
                 });*/
 
-                
-                <%  
-                /*
-                    ResultadoDiretores res = (ResultadoDiretores)request.getAttribute("ResultadoDiretores");
-                    */
-                %>
-
     		$('#diretor').tagit({
     			allowSpaces: true,
     			placeholderText: "Digite o nome do diretor",
-    			availableTags: [<% /* 
-                                        if(res == null){
-                                            System.out.println("RESULTADO NULO");
-                                        }
-                                        else {
-
-                                            for (int i = 0 ; i < res.size() ; i++){
-                                                out.println('"');
-                                                out.println(res.returnDiretor(i));
-                                                out.println('"');
-                                                if(i != res.size())
-                                                    out.println(", ");
-                                            }
-                                        }
-                        */%>],
+    			availableTags: [],
     			autocomplete: {delay: 0, minLength: 2}
     		});
                 

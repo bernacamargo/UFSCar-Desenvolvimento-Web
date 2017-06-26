@@ -16,11 +16,17 @@ public class BuscaAvancadaDAO {
         this.conn = new ConnectionFactory();
     }
     
-    public ResultadoBusca buscar(String title, String diretor){
+    public ResultadoBusca buscar(String title, String diretor, String pag){
         ResultSet rs = null;
         ResultadoBusca rb = new ResultadoBusca();
         
         String diretores[] = diretor.split(",");
+        int limit = 0;
+        
+        if(pag != null){
+            limit = Integer.parseInt(pag)-1;
+            limit = limit * 10;
+        }
                
         String SQL = "SELECT f.title, f.mvyear, d.dname, g.genre, l.language "
                     + "FROM filmes AS f "
@@ -41,7 +47,8 @@ public class BuscaAvancadaDAO {
                             }
                         }
                     }
-                    SQL = SQL + "LIMIT 10";
+                    SQL = SQL + "LIMIT 10 OFFSET "+limit;
+                    System.out.println(SQL); 
         try{
             conn.stmt.execute(SQL);
             rs = conn.stmt.getResultSet();  

@@ -61,7 +61,7 @@ public class BuscaDiretores extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
     }
 
     /**
@@ -82,9 +82,8 @@ public class BuscaDiretores extends HttpServlet {
         ResultadoDiretores res = buscaDAO.buscar();
         
         request.setAttribute("ResultadoDiretores", res);
-        RequestDispatcher rd = request.getRequestDispatcher("/");
+        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
         rd.forward(request, response);
-
         
     }
 
